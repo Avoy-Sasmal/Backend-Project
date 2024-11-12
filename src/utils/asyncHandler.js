@@ -1,12 +1,12 @@
 //promise structure 
-const asyncHandler = ()=>{
-  (req,res,next)=>{
+const asyncHandler = (requestHandler)=>{
+  return (req,res,next)=>{
     Promise.resolve(requestHandler(req,res,next).catch((err)=>next(err)))
   }
 }
 
 
-export  {asyncHandler}
+export  {asyncHandler};
 //*********Try Catch formate ******** */
 //high order function  ek sur function mai forward 
 //  const asyncHandler = ()=>{}

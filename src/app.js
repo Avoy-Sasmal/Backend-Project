@@ -15,4 +15,21 @@ app.use(express.urlencoded({extended: true,limit: "16kb"}))
 // koi image ho fav icon ho uska liya public asset mai server mai store karna chahta huu 
 app.use(express.static("public"))//folder name 
 app.use(cookieParser())
-export  {app}
+
+
+
+
+
+//routes import 
+import userRouter from "./routes/user.routes.js" // machaha nam tabhi de sakte hai jab export default ho raha hoo 
+
+
+//routes declaration - app router ko get karne ka liya middle ware lana padega 
+app.use("/api/v1/users",userRouter)
+
+// console.log("i amm app.js");
+
+
+
+// http://localhost:8000/api/v1/users/register  */
+export  {app} 
