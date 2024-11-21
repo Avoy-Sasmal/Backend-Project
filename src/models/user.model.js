@@ -17,7 +17,7 @@ email:{
   required:true,
   unique:true,
   lowercase:true,
-    trim:true,
+  trim:true,
 },
 fullname:{
   type:String,
@@ -54,7 +54,7 @@ userSchema.pre("save",async function (next) {
   // agar modify nahi hua to hatao 
   if(!this.isModified("password")) return next();
   // aur agar modify hua to change karo 
-  this.password = bcrypt.hash(this.password,10)
+  this.password =  await bcrypt.hash(this.password,10)
   next()
 })
 // custom method  check that password is correct or not 
@@ -68,7 +68,8 @@ userSchema.methods.generateAccessToken = function(){//kya kya store karwana chan
     _id:this._id,// already mongo mai bana nya hua hai ya methods 
     email:this.email,
     username:this.username,
-    fullname:this.fullname
+    fullname:this.fullname,
+    // required:true
   },
   // here need aur two thing one is Accesss secret and a object where expiry is given 
   process.env.ACCESS_TOKEN_SECRET,
